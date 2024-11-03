@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -10,19 +10,19 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/layouts/main-layout/nav-main"
-import { NavProjects } from "@/components/layouts/main-layout/nav-projects"
-import { NavUser } from "@/components/layouts/main-layout/nav-user"
-import { TeamSwitcher } from "@/components/layouts/main-layout/team-switcher"
+import { NavMain } from "@/components/layouts/main-layout/NavMain";
+import { NavProjects } from "@/components/layouts/main-layout/NavProjects";
+import { NavUser } from "@/components/layouts/main-layout/NavUser";
+import { TeamSwitcher } from "@/components/layouts/main-layout/TeamSwitcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
 // This is sample data.
 const data = {
@@ -152,9 +152,11 @@ const data = {
       icon: Map,
     },
   ],
-}
+};
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export const AppSidebar = ({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -169,5 +171,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
-}
+  );
+};

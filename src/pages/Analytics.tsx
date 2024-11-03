@@ -1,4 +1,4 @@
-import { Page } from "@/components/layouts/page";
+import { Page } from "@/components/layouts/Page";
 
 const Analytics = () => {
   return <Page>analytics</Page>;
