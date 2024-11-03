@@ -13,8 +13,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Outlet } from "react-router-dom";
 
-export function MainLayout({ children }: { children: React.ReactNode }) {
+export function MainLayout() {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -38,7 +39,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
             </Breadcrumb>
           </div>
         </header>
-        {children}
+        <Outlet />
       </SidebarInset>
     </SidebarProvider>
   );
