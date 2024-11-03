@@ -18,11 +18,11 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 - Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
@@ -31,11 +31,11 @@ export default tseslint.config({
 
 ```js
 // eslint.config.js
-import react from 'eslint-plugin-react'
+import react from "eslint-plugin-react";
 
 export default tseslint.config({
   // Set the react version
-  settings: { react: { version: '18.3' } },
+  settings: { react: { version: "18.3" } },
   plugins: {
     // Add the react plugin
     react,
@@ -44,7 +44,26 @@ export default tseslint.config({
     // other rules...
     // Enable its recommended rules
     ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
+    ...react.configs["jsx-runtime"].rules,
   },
-})
+});
 ```
+
+## Folder Structure
+
+- `src` - main source code
+- `src/api` - for api related functions
+- `src/assets` - for anything that isn't code related like images, styles, fonts, etc.
+- `src/components` - for components that can be reuse in the entire app
+- `src/components/layouts` - for layout based components
+- `src/constants` - for constant values
+- `src/contexts` - for app react context
+- `src/hooks` - for react custom hooks
+- `src/lib` - for third party facades of different library
+- `src/pages` - for app component pages
+- `src/router` - for app routes
+- `src/store` - for app state management
+- `src/tests` - for anything tests related like unit and e2e tests
+- `src/tests/unit` - for unit tests
+- `src/tests/e2e` - for e2e tests
+- `src/utils` - for reusable utility functions
