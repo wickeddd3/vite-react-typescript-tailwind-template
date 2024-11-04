@@ -1,14 +1,12 @@
-import { AppSidebar } from "@/components/layouts/main-layout/AppSidebar";
-import { AppNavbar } from "@/components/layouts/main-layout/AppNavbar";
+import { MainSidebar } from "@/components/layouts/main-layout/MainSidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router-dom";
 
 export const MainLayout = () => {
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <MainSidebar />
       <SidebarInset>
-        <AppNavbar />
         <Outlet />
       </SidebarInset>
     </SidebarProvider>
