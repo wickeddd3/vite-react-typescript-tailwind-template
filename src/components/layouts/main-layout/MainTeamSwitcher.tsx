@@ -17,7 +17,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export const TeamSwitcher = ({
+export const MainTeamSwitcher = ({
   teams,
 }: {
   teams: {
