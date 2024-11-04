@@ -49,6 +49,8 @@ export default tseslint.config({
 });
 ```
 
+---
+
 ## Folder Structure
 
 - `src` - main source code
@@ -67,6 +69,8 @@ export default tseslint.config({
   - `src/tests/unit` - for unit tests
   - `src/tests/e2e` - for e2e tests
 - `src/utils` - for reusable utility functions
+
+---
 
 ## Conventional Commit Messages
 
@@ -103,4 +107,101 @@ style: remove empty line
 
 ```
 fix: fix wrong calculation of request body checksum
+```
+
+---
+
+## Folder and File Naming Convention
+
+### KebabCase
+
+- `Folder names`, `data`, `types`
+
+#### Examples
+
+- `main-layout` - folder
+- `auth-user.data.ts` - data
+- `auth-user.type.ts` - types
+
+### PascalCase
+
+- `Component name`, `Component file name`, `Prop name`, `Interface Name`, `Type Name`, `Context name`, `Context file name`
+
+#### Examples
+
+```js
+const TodoItem = () => {
+  ...
+}
+```
+
+```js
+interface TodoItemProps {
+  id: number;
+  name: string;
+  value: string;
+}
+```
+
+```js
+interface TodoItem {
+  id: number;
+  name: string;
+  value: string;
+}
+```
+
+```js
+type TodoItem = {
+  id: number,
+  name: string,
+  value: string,
+};
+```
+
+```js
+export const DialogContext = createContext(null);
+```
+
+### CamelCase
+
+- `Hooks name`, `Hooks file name`, `Utility function name`, `Utility function file name`
+
+#### Examples
+
+```js
+export function useLocalStorage({ name = "myapp", defaultValue = false }) {
+  const defValue = window.localStorage.getItem(name) ?? defaultValue;
+  const [value, setVal] = useState(defValue);
+
+  const setValue = (value) => {
+    setVal(value);
+    window.localStorage.setItem(name, value);
+  };
+
+  return {
+    value,
+    setValue,
+  };
+}
+```
+
+```js
+export const objectToUrlParams = (objectParams) => {
+  if (typeof objectParams === "object") {
+    const params = new URLSearchParams(objectParams);
+    return `?${params.toString()}`;
+  }
+  return "";
+};
+```
+
+### SnakeCase (Uppercase)
+
+- `Constants`
+
+#### Examples
+
+```js
+const API_URL = "https://api.example.com";
 ```
