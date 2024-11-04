@@ -89,12 +89,12 @@ export const menu: MenuItem[] = [
           {
             type: "MenuLink",
             title: "List",
-            url: "/",
+            url: "/list",
           },
           {
             type: "MenuLink",
             title: "DataTable",
-            url: "/",
+            url: "/datatable",
           },
         ],
       },
