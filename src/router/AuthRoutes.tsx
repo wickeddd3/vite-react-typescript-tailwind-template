@@ -3,14 +3,14 @@ import { createBrowserRouter } from "react-router-dom";
 import { MainLayout } from "@/components/layouts/main-layout/MainLayout";
 import { PageLoader } from "@/components/PageLoader";
 
-// const Dashboard = lazy(() => import("@/pages/Dashboard"));
-
-// Delay function
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Create a lazy-loaded Dashboard component with a delay
 const Dashboard = lazy(() =>
   delay(1000).then(() => import("@/pages/Dashboard"))
+);
+
+const Analytics = lazy(() =>
+  delay(1000).then(() => import("@/pages/Analytics"))
 );
 
 export const AuthRoutes = createBrowserRouter([
@@ -23,6 +23,22 @@ export const AuthRoutes = createBrowserRouter([
         element: (
           <PageLoader>
             <Dashboard />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PageLoader>
+            <Dashboard />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/analytics",
+        element: (
+          <PageLoader>
+            <Analytics />
           </PageLoader>
         ),
       },
