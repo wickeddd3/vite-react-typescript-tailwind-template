@@ -20,6 +20,10 @@ const Profile = lazy(() =>
 const Product = lazy(() =>
   delay(1000).then(() => import("@/pages/forms/Product"))
 );
+const List = lazy(() => delay(1000).then(() => import("@/pages/tables/List")));
+const DataTable = lazy(() =>
+  delay(1000).then(() => import("@/pages/tables/DataTable"))
+);
 
 export const AuthRoutes = createBrowserRouter([
   {
@@ -71,6 +75,22 @@ export const AuthRoutes = createBrowserRouter([
         element: (
           <PageLoader>
             <Product />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/list",
+        element: (
+          <PageLoader>
+            <List />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/datatable",
+        element: (
+          <PageLoader>
+            <DataTable />
           </PageLoader>
         ),
       },
