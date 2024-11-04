@@ -205,3 +205,78 @@ export const objectToUrlParams = (objectParams) => {
 ```js
 const API_URL = "https://api.example.com";
 ```
+
+---
+
+## Variables, Event handlers, CSS classes, Props
+
+#### Variables
+
+> Prefix state variables with is, has, or should to denote boolean values.
+
+- <span style="color:green">✔️</span> Follow
+
+```js
+const [isActive, setIsActive] = useState(false);
+```
+
+- <span style="color:red">❌</span> Avoid
+
+```js
+const [active, setActive] = useState(false);
+```
+
+#### Event handlers
+
+> Use handle as a prefix for event handler functions. For example, handleClick, handleInputChange
+
+- <span style="color:green">✔️</span> Follow
+
+```js
+const handleButtonClick = () => {
+  setIsActive(!isActive);
+};
+```
+
+- <span style="color:red">❌</span> Avoid
+
+```js
+const buttonClick = () => {
+  setIsActive(!isActive);
+};
+```
+
+#### CSS classes
+
+> Use lowercase letters and hyphens for CSS class names. Unless you're using css methodologies like BEM
+
+- <span style="color:green">✔️</span> Follow
+
+```html
+<div className="container-wrapper"></div>
+```
+
+- <span style="color:red">❌</span> Avoid
+
+```html
+<div className="containerwrapper"></div>
+<div className="containerWrapper"></div>
+<div className="ContainerWrapper"></div>
+```
+
+#### Props
+
+> Use descriptive names for props to clearly indicate their purpose.
+> Avoid abbreviations or acronyms unless they are widely understood in the context of your project.
+
+- <span style="color:green">✔️</span> Follow
+
+```js
+interface UserCardProps {
+  user: User;
+}
+
+const UserCard = ({ user }: UserCardProps) => {
+  ...
+}
+```
