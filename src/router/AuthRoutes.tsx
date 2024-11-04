@@ -8,9 +8,17 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const Dashboard = lazy(() =>
   delay(1000).then(() => import("@/pages/Dashboard"))
 );
-
 const Analytics = lazy(() =>
   delay(1000).then(() => import("@/pages/Analytics"))
+);
+const Contact = lazy(() =>
+  delay(1000).then(() => import("@/pages/forms/Contact"))
+);
+const Profile = lazy(() =>
+  delay(1000).then(() => import("@/pages/forms/Profile"))
+);
+const Product = lazy(() =>
+  delay(1000).then(() => import("@/pages/forms/Product"))
 );
 
 export const AuthRoutes = createBrowserRouter([
@@ -39,6 +47,30 @@ export const AuthRoutes = createBrowserRouter([
         element: (
           <PageLoader>
             <Analytics />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <PageLoader>
+            <Contact />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PageLoader>
+            <Profile />
+          </PageLoader>
+        ),
+      },
+      {
+        path: "/product",
+        element: (
+          <PageLoader>
+            <Product />
           </PageLoader>
         ),
       },
