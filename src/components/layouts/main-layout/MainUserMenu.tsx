@@ -26,7 +26,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export const NavUser = ({
+export const MainUserMenu = ({
   user,
 }: {
   user: {
