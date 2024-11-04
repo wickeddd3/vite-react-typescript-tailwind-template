@@ -67,17 +67,17 @@ export const menu: MenuItem[] = [
           {
             type: "MenuLink",
             title: "Contact",
-            url: "/",
+            url: "/contact",
           },
           {
             type: "MenuLink",
             title: "Profile",
-            url: "/",
+            url: "/profile",
           },
           {
             type: "MenuLink",
             title: "Product",
-            url: "/",
+            url: "/product",
           },
         ],
       },
