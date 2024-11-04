@@ -62,13 +62,15 @@ fix: fix wrong calculation of request body checksum
 
 ### KebabCase
 
-- `Folder names`, `data`, `types`
+- `Folder names`, `data`, `types`, `Hook file name`, `Utility function file name`
 
 #### Examples
 
 - `main-layout` - folder
 - `auth-user.data.ts` - data
 - `auth-user.type.ts` - types
+- `use-mobile` - hooks
+- `object-to-url-params` - utility function
 
 ### PascalCase
 
@@ -112,7 +114,7 @@ export const DialogContext = createContext(null);
 
 ### CamelCase
 
-- `Hooks name`, `Hooks file name`, `Utility function name`, `Utility function file name`
+- `Hooks name`, `Utility function name`
 
 #### Examples
 
