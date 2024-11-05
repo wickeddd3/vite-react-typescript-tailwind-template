@@ -39,7 +39,7 @@ export const PageNavbar = ({ title, children }: PageNavbarProps) => {
 };
 
 export const PageContent = ({ children }: { children: ReactNode }) => {
-  return <div className="w-full h-fit p-4">{children}</div>;
+  return <div className="w-full h-fit p-4 flex flex-col gap-4">{children}</div>;
 };
 
 export const PageBreadcrumb = ({ className }: { className: string }) => {
