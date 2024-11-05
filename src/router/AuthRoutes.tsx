@@ -6,10 +6,10 @@ import { PageLoader } from "@/components/PageLoader";
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Dashboard = lazy(() =>
-  delay(1000).then(() => import("@/pages/Dashboard"))
+  delay(1000).then(() => import("@/pages/dashboard/Dashboard"))
 );
 const Analytics = lazy(() =>
-  delay(1000).then(() => import("@/pages/Analytics"))
+  delay(1000).then(() => import("@/pages/analytics/Analytics"))
 );
 const Contact = lazy(() =>
   delay(1000).then(() => import("@/pages/forms/Contact"))
