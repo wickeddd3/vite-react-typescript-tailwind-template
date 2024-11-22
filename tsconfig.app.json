@@ -21,10 +21,14 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
 
-    "baseUrl": ".",
+    "types": ["vitest", "vitest/globals", "@testing-library/react"],
+
+    "baseUrl": "./src/",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["*"],
+      "@/components/*": ["components/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
