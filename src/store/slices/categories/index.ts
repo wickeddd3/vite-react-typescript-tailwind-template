@@ -1,0 +1,22 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { initialState } from "@/store/slices/categories/state";
+import { listCategoriesThunk } from "@/store/slices/categories/thunks/categories";
+import { categoriesReducers } from "@/store/slices/categories/extra-reducers/categories";
+import { selectCategoryReducer } from "@/store/slices/categories/reducers";
+
+export const categoriesSlice = createSlice({
+  name: "categories",
+  initialState,
+  reducers: {
+    selectCategory: selectCategoryReducer,
+  },
+  extraReducers(builder) {
+    categoriesReducers(builder);
+  },
+});
+
+export const { selectCategory } = categoriesSlice.actions;
+
+export { listCategoriesThunk };
+
+export default categoriesSlice.reducer;
