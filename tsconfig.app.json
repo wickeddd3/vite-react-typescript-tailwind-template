@@ -23,10 +23,15 @@
 
     "types": ["vitest", "vitest/globals", "@testing-library/react"],
 
-    "baseUrl": "./src/",
+    "baseUrl": "./src",
     "paths": {
       "@/*": ["*"],
-      "@/components/*": ["components/*"]
+      "@/components/*": ["components/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"],
+      "@/pages/*": ["pages/*"],
+      "@/router/*": ["router/*"],
+      "@/schema/*": ["schema/*"]
     }
   },
   "include": ["src"],
