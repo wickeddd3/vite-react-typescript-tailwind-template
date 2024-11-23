@@ -1,13 +1,13 @@
 import { Page } from "@/components/layouts/Page";
 
-const List = () => {
+const Users = () => {
   return (
     <Page>
-      <Page.Navbar title="List" />
+      <Page.Navbar title="Users" />
       <Page.Breadcrumb className="px-4" />
-      <Page.Content>List</Page.Content>
+      <Page.Content>Users</Page.Content>
     </Page>
   );
 };
 
-export default List;
+export default Users;

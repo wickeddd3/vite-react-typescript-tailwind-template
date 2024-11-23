@@ -11,18 +11,17 @@ const Dashboard = lazy(() =>
 const Analytics = lazy(() =>
   delay(1000).then(() => import("@/pages/analytics/Analytics"))
 );
-const Contact = lazy(() =>
-  delay(1000).then(() => import("@/pages/forms/Contact"))
+const Categories = lazy(() =>
+  delay(1000).then(() => import("@/pages/ecommerce/categories/Categories"))
 );
-const Profile = lazy(() =>
-  delay(1000).then(() => import("@/pages/forms/Profile"))
+const Products = lazy(() =>
+  delay(1000).then(() => import("@/pages/ecommerce/products/Products"))
 );
-const Product = lazy(() =>
-  delay(1000).then(() => import("@/pages/forms/Product"))
+const Users = lazy(() =>
+  delay(1000).then(() => import("@/pages/accounts/users/Users"))
 );
-const List = lazy(() => delay(1000).then(() => import("@/pages/tables/List")));
-const DataTable = lazy(() =>
-  delay(1000).then(() => import("@/pages/tables/DataTable"))
+const Roles = lazy(() =>
+  delay(1000).then(() => import("@/pages/accounts/roles/Roles"))
 );
 
 export const AuthRoutes = createBrowserRouter([
@@ -55,42 +54,34 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/contact",
+        path: "/categories",
         element: (
           <PageLoader>
-            <Contact />
+            <Categories />
           </PageLoader>
         ),
       },
       {
-        path: "/profile",
+        path: "/products",
         element: (
           <PageLoader>
-            <Profile />
+            <Products />
           </PageLoader>
         ),
       },
       {
-        path: "/product",
+        path: "/users",
         element: (
           <PageLoader>
-            <Product />
+            <Users />
           </PageLoader>
         ),
       },
       {
-        path: "/list",
+        path: "/roles",
         element: (
           <PageLoader>
-            <List />
-          </PageLoader>
-        ),
-      },
-      {
-        path: "/datatable",
-        element: (
-          <PageLoader>
-            <DataTable />
+            <Roles />
           </PageLoader>
         ),
       },

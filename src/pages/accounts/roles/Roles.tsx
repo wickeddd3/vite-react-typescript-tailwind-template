@@ -1,13 +1,13 @@
 import { Page } from "@/components/layouts/Page";
 
-const Contact = () => {
+const Roles = () => {
   return (
     <Page>
-      <Page.Navbar title="Contact" />
+      <Page.Navbar title="Roles" />
       <Page.Breadcrumb className="px-4" />
-      <Page.Content>Contact</Page.Content>
+      <Page.Content>Roles</Page.Content>
     </Page>
   );
 };
 
-export default Contact;
+export default Roles;

@@ -1,13 +1,13 @@
 import { Page } from "@/components/layouts/Page";
 
-const Profile = () => {
+const Products = () => {
   return (
     <Page>
-      <Page.Navbar title="Profile" />
+      <Page.Navbar title="Products" />
       <Page.Breadcrumb className="px-4" />
-      <Page.Content>Profile</Page.Content>
+      <Page.Content>Products</Page.Content>
     </Page>
   );
 };
 
-export default Profile;
+export default Products;

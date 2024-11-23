@@ -2,12 +2,10 @@ import {
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
-  Table,
-  BookCopy,
+  UserCog,
+  ShoppingBag,
   ChartColumn,
   ChartPie,
-  LayoutPanelLeft,
-  Folders,
 } from "lucide-react";
 import { MenuItem } from "@/components/layouts/types/menu.type";
 
@@ -56,65 +54,42 @@ export const menu: MenuItem[] = [
   },
   {
     type: "MenuGroup",
-    title: "Components",
+    title: "Pages",
     items: [
       {
         type: "MenuCollapsible",
-        title: "Forms",
-        icon: BookCopy,
+        title: "E-Commerce",
+        icon: ShoppingBag,
         isActive: true,
         items: [
           {
             type: "MenuLink",
-            title: "Contact",
-            url: "/contact",
+            title: "Categories",
+            url: "/categories",
           },
           {
             type: "MenuLink",
-            title: "Profile",
-            url: "/profile",
-          },
-          {
-            type: "MenuLink",
-            title: "Product",
-            url: "/product",
+            title: "Products",
+            url: "/products",
           },
         ],
       },
       {
         type: "MenuCollapsible",
-        title: "Tables",
-        icon: Table,
+        title: "Accounts",
+        icon: UserCog,
         items: [
           {
             type: "MenuLink",
-            title: "List",
-            url: "/list",
+            title: "Users",
+            url: "/users",
           },
           {
             type: "MenuLink",
-            title: "DataTable",
-            url: "/datatable",
+            title: "Roles",
+            url: "/roles",
           },
         ],
-      },
-    ],
-  },
-  {
-    type: "MenuGroup",
-    title: "App",
-    items: [
-      {
-        type: "MenuLink",
-        title: "Task Manager",
-        url: "/",
-        icon: LayoutPanelLeft,
-      },
-      {
-        type: "MenuLink",
-        title: "File Manager",
-        url: "/",
-        icon: Folders,
       },
     ],
   },
