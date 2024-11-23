@@ -5,7 +5,7 @@ import { categoriesReducers } from "@/store/slices/categories/extra-reducers/cat
 import { selectCategoryReducer } from "@/store/slices/categories/reducers";
 
 export const categoriesSlice = createSlice({
-  name: "categories",
+  name: "categoriesSlice",
   initialState,
   reducers: {
     selectCategory: selectCategoryReducer,
