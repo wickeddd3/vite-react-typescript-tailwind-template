@@ -3,9 +3,10 @@ import { listCategories } from "@/services/categories";
 
 export const listCategoriesThunk = createAsyncThunk(
   "files/listFilesThunk",
-  async (_, { rejectWithValue }) => {
+  async () => {
     const response = await listCategories();
+
     console.log(response);
-    return rejectWithValue("Files not found");
+    return response.data ?? [];
   }
 );
