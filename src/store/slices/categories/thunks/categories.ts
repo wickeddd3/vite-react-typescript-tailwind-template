@@ -5,8 +5,6 @@ export const listCategoriesThunk = createAsyncThunk(
   "files/listFilesThunk",
   async () => {
     const response = await listCategories();
-
-    console.log(response);
-    return response.data ?? [];
+    return response?.data ?? [];
   }
 );
