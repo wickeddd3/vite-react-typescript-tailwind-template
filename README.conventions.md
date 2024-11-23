@@ -1,21 +1,35 @@
 ## Folder Structure
 
 - `src` - main source code
-- `src/api` - for api related functions
 - `src/assets` - for anything that isn't code related like images, styles, fonts, etc.
+  - `src/assets/css` - for css files.
 - `src/components` - for components that can be reuse in the entire app
   - `src/components/layouts` - for layout based components
+  - `src/components/ui` - for shadcnui components
 - `src/constants` - for constant values
 - `src/contexts` - for app react context
 - `src/hooks` - for react custom hooks
 - `src/lib` - for third party facades of different library
 - `src/pages` - for app component pages
+  - `src/pages/dashboard` - for dashboard related/specific files
+    - `src/pages/dashboard/Dashboard.tsx` - dashboard page main component
+    - `src/pages/dashboard/components` - for dashboard specific components
+    - `src/pages/dashboard/types` - for dashboard specific types
 - `src/router` - for app routes
+- `src/services` - for api request related functions
 - `src/store` - for app state management
+  - `src/store/index.ts` - store main file
+  - `src/store/slices` - for store slices
+  - `src/store/slices/thunks` - for store slice thunks
+  - `src/store/slices/extra-reducers` - for store slice extra-reducers
+  - `src/store/slices/reducers.ts` - for store slice reducers
+  - `src/store/slices/state.ts` - for store slice initial state
+  - `src/store/slices/types` - for store slice state types
 - `src/tests` - for anything tests related like unit and e2e tests
   - `src/tests/unit` - for unit tests
   - `src/tests/e2e` - for e2e tests
 - `src/utils` - for reusable utility functions
+- `src/types` - for global types
 
 ---
 
