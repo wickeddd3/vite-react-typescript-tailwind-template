@@ -3,8 +3,9 @@ import { Page } from "@/components/layouts/Page";
 const Users = () => {
   return (
     <Page>
-      <Page.Navbar title="Users" />
-      <Page.Breadcrumb className="px-4" />
+      <Page.Navbar>
+        <Page.Breadcrumb />
+      </Page.Navbar>
       <Page.Content>Users</Page.Content>
     </Page>
   );

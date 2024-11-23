@@ -8,8 +8,9 @@ import { SalesOrders } from "@/pages/dashboard/components/SalesOrders";
 const Dashboard = () => {
   return (
     <Page>
-      <Page.Navbar title="Dashboard" />
-      <Page.Breadcrumb className="px-4" />
+      <Page.Navbar>
+        <Page.Breadcrumb />
+      </Page.Navbar>
       <Page.Content>
         <StatsCards items={stats} />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
