@@ -15,7 +15,7 @@ export const categoriesReducers = (
     .addCase(listCategoriesThunk.fulfilled, (state, action) => {
       const categories = action.payload || [];
       const list = [...state.categories.data, ...categories];
-      handleFulfilled(state, categories, list);
+      handleFulfilled(state, 'categories', list);
     })
     .addCase(listCategoriesThunk.pending, (state) =>
       handlePending(state, "categories")
