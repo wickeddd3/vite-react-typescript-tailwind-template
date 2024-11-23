@@ -7,7 +7,7 @@ import axios, {
 import {
   getLocalStorageState,
   removeLocalStorageState,
-} from "utils/local-storage";
+} from "@/utils/local-storage";
 
 type ApiRequestOptions = {
   url?: string;
