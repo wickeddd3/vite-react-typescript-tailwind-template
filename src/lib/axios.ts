@@ -4,11 +4,9 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import {
-  getLocalStorageState,
-  removeLocalStorageState,
-} from "@/utils/local-storage";
+import { getLocalStorageState } from "@/utils/local-storage";
 import { baseURL, tokenName } from "@/config/app.config";
+import { logout } from "@/utils/logout";
 
 type ApiRequestOptions = {
   url?: string;
@@ -46,11 +44,7 @@ export const apiRequest = ({ url = "", config = {} }: ApiRequestOptions) => {
     async (error) => {
       const { response } = error;
       if (response?.status === 401) {
-        // remove token from local storage
-        removeLocalStorageState(tokenName);
-        // reload and redirect to homepage
-        const hostUrl = `${window.location.protocol}//${window.location.host}`;
-        window.location.href = hostUrl;
+        logout();
       }
       return Promise.reject(error);
     }
