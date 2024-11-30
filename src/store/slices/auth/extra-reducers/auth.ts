@@ -1,6 +1,10 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { AuthState } from "@/store/slices/auth/types";
-import { loginThunk, registerThunk } from "@/store/slices/auth/thunks/auth";
+import {
+  getAuthUserThunk,
+  loginThunk,
+  registerThunk,
+} from "@/store/slices/auth/thunks/auth";
 import { tokenName } from "@/config/app.config";
 import { setLocalStorageState } from "@/utils/local-storage";
 
@@ -21,5 +25,11 @@ export const authReducers = (builder: ActionReducerMapBuilder<AuthState>) => {
     if (auth?.token) {
       setLocalStorageState(tokenName, auth?.token);
     }
+  });
+
+  // get auth user
+  builder.addCase(getAuthUserThunk.fulfilled, (state, action) => {
+    const authUser = action.payload || null;
+    state.auth.user = authUser;
   });
 };
