@@ -3,3 +3,6 @@ export const getLocalStorageState = (name: string) =>
 
 export const removeLocalStorageState = (name: string) =>
   window && window.localStorage.removeItem(`${name}`);
+
+export const setLocalStorageState = (name: string, value: string) =>
+  window && window.localStorage.setItem(`${name}`, value);
