@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "@/services/auth";
+import { getAuthUser, login, register } from "@/services/auth";
 import { LoginSchemaType, RegisterSchemaType } from "@/schema/auth";
 import { Auth } from "@/store/slices/auth/types";
+import { AuthUser } from "@/types/auth";
 
 export const registerThunk = createAsyncThunk<
   Auth, // Return type of the thunk
@@ -18,3 +19,11 @@ export const loginThunk = createAsyncThunk<
   const { data } = await login(initialData);
   return data ?? null;
 });
+
+export const getAuthUserThunk = createAsyncThunk<AuthUser>(
+  "authSlice/getAuthUserThunk",
+  async () => {
+    const { data } = await getAuthUser();
+    return data ?? null;
+  }
+);

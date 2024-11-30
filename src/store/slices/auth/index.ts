@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "@/store/slices/auth/state";
-import { registerThunk, loginThunk } from "@/store/slices/auth/thunks/auth";
+import {
+  registerThunk,
+  loginThunk,
+  getAuthUserThunk,
+} from "@/store/slices/auth/thunks/auth";
 import { authReducers } from "@/store/slices/auth/extra-reducers/auth";
 import { setAuthTokenReducer } from "@/store/slices/auth/reducers";
 
@@ -17,6 +21,6 @@ export const authSlice = createSlice({
 
 export const { setAuthToken } = authSlice.actions;
 
-export { registerThunk, loginThunk };
+export { registerThunk, loginThunk, getAuthUserThunk };
 
 export default authSlice.reducer;
