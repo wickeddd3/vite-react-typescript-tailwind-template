@@ -42,12 +42,15 @@ export const LoginForm = ({ className = "" }) => {
 
   async function onSubmit(values: LoginSchemaType) {
     try {
-      await dispatch(loginThunk(values));
-      toast({
-        title: "Success",
-        description: "Logged in successfully",
-      });
-      navigate("/");
+      dispatch(loginThunk(values))
+        .unwrap()
+        .then(() => {
+          toast({
+            title: "Success",
+            description: "Logged in successfully",
+          });
+          navigate("/");
+        });
     } catch {
       toast({
         title: "Error",
