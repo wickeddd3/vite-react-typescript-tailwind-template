@@ -11,3 +11,7 @@ export const register = async (data: RegisterSchemaType) => {
 export const login = async (data: LoginSchemaType) => {
   return await authResource.post(data, { url: `${baseUrl}/login` });
 };
+
+export const getAuthUser = async () => {
+  return await authResource.get({ url: `${baseUrl}/me` });
+};
