@@ -8,6 +8,7 @@ import {
   getLocalStorageState,
   removeLocalStorageState,
 } from "@/utils/local-storage";
+import { baseURL, tokenName } from "@/config/app.config";
 
 type ApiRequestOptions = {
   url?: string;
@@ -17,8 +18,6 @@ type ApiRequestOptions = {
 type RequestData = Record<string, unknown> | FormData | null;
 
 export const apiRequest = ({ url = "", config = {} }: ApiRequestOptions) => {
-  const baseURL = import.meta.env.VITE_APP_API_BASE_URL || "";
-  const tokenName = import.meta.env.VITE_APP_TOKEN_LOCAL_STORAGE_NAME || "";
   const headers = {
     Accept: "application/json",
   };
