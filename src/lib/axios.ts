@@ -46,7 +46,11 @@ export const apiRequest = ({ url = "", config = {} }: ApiRequestOptions) => {
     async (error) => {
       const { response } = error;
       if (response?.status === 401) {
+        // remove token from local storage
         removeLocalStorageState(tokenName);
+        // reload and redirect to homepage
+        const hostUrl = `${window.location.protocol}//${window.location.host}`;
+        window.location.href = hostUrl;
       }
       return Promise.reject(error);
     }
