@@ -7,22 +7,22 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const Dashboard = lazy(() =>
-  delay(1000).then(() => import("@/pages/dashboard/Dashboard"))
+  delay(500).then(() => import("@/pages/dashboard/Dashboard"))
 );
 const Analytics = lazy(() =>
-  delay(1000).then(() => import("@/pages/analytics/Analytics"))
+  delay(500).then(() => import("@/pages/analytics/Analytics"))
 );
 const Categories = lazy(() =>
-  delay(1000).then(() => import("@/pages/ecommerce/categories/Categories"))
+  delay(500).then(() => import("@/pages/ecommerce/categories/Categories"))
 );
 const Products = lazy(() =>
-  delay(1000).then(() => import("@/pages/ecommerce/products/Products"))
+  delay(500).then(() => import("@/pages/ecommerce/products/Products"))
 );
 const Users = lazy(() =>
-  delay(1000).then(() => import("@/pages/accounts/users/Users"))
+  delay(500).then(() => import("@/pages/accounts/users/Users"))
 );
 const Roles = lazy(() =>
-  delay(1000).then(() => import("@/pages/accounts/roles/Roles"))
+  delay(500).then(() => import("@/pages/accounts/roles/Roles"))
 );
 
 export const AuthRoutes = createBrowserRouter([
