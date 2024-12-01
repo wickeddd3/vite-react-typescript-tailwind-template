@@ -8,10 +8,10 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const NotFound = lazy(() => import("@/pages/NotFound"));
 const Login = lazy(() =>
-  delay(1000).then(() => import("@/pages/auth/login/Login"))
+  delay(500).then(() => import("@/pages/auth/login/Login"))
 );
 const Register = lazy(() =>
-  delay(1000).then(() => import("@/pages/auth/register/Register"))
+  delay(500).then(() => import("@/pages/auth/register/Register"))
 );
 
 export const GuestRoutes = createBrowserRouter([
