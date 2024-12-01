@@ -39,6 +39,10 @@ export const GuestRoutes = createBrowserRouter([
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: (
+      <PageLoader>
+        <NotFound />
+      </PageLoader>
+    ),
   },
 ]);
