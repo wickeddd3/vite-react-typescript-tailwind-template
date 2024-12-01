@@ -6,7 +6,7 @@ import { PageLoader } from "@/components/PageLoader";
 // Delay function
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// Create a lazy-loaded Login component with a delay
+const NotFound = lazy(() => import("@/pages/NotFound"));
 const Login = lazy(() =>
   delay(1000).then(() => import("@/pages/auth/login/Login"))
 );
@@ -36,5 +36,9 @@ export const GuestRoutes = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
   },
 ]);

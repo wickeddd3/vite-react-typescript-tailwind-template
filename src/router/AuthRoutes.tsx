@@ -5,6 +5,7 @@ import { PageLoader } from "@/components/PageLoader";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const NotFound = lazy(() => import("@/pages/NotFound"));
 const Dashboard = lazy(() =>
   delay(1000).then(() => import("@/pages/dashboard/Dashboard"))
 );
@@ -86,5 +87,13 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: (
+      <PageLoader>
+        <NotFound />
+      </PageLoader>
+    ),
   },
 ]);
