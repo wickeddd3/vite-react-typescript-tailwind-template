@@ -20,7 +20,7 @@ export const GuestRoutes = createBrowserRouter([
     // element: <MainLayout />,
     children: [
       {
-        path: "",
+        index: true,
         element: (
           <PageLoader>
             <Login />
@@ -28,7 +28,7 @@ export const GuestRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/register",
+        path: "register",
         element: (
           <PageLoader>
             <Register />

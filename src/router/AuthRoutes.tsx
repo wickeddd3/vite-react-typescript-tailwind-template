@@ -30,7 +30,7 @@ export const AuthRoutes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "",
+        index: true,
         element: (
           <PageLoader>
             <Dashboard />
@@ -38,7 +38,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: (
           <PageLoader>
             <Dashboard />
@@ -46,7 +46,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/analytics",
+        path: "analytics",
         element: (
           <PageLoader>
             <Analytics />
@@ -54,7 +54,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/categories",
+        path: "categories",
         element: (
           <PageLoader>
             <Categories />
@@ -62,7 +62,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/products",
+        path: "products",
         element: (
           <PageLoader>
             <Products />
@@ -70,7 +70,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/users",
+        path: "users",
         element: (
           <PageLoader>
             <Users />
@@ -78,7 +78,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/roles",
+        path: "roles",
         element: (
           <PageLoader>
             <Roles />
