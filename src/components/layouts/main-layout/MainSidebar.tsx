@@ -8,10 +8,14 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { teams, user, menu } from "@/components/layouts/data/sidebar.data";
+import { teams, menu } from "@/components/layouts/data/sidebar.data";
 import { MenuContent } from "@/components/layouts/MenuContent";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 export const MainSidebar = ({ ...props }: ComponentProps<typeof Sidebar>) => {
+  const user = useSelector((state: RootState) => state.authSlice.auth?.user);
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

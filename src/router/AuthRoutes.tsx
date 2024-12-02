@@ -5,23 +5,24 @@ import { PageLoader } from "@/components/PageLoader";
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const NotFound = lazy(() => import("@/pages/NotFound"));
 const Dashboard = lazy(() =>
-  delay(1000).then(() => import("@/pages/dashboard/Dashboard"))
+  delay(500).then(() => import("@/pages/dashboard/Dashboard"))
 );
 const Analytics = lazy(() =>
-  delay(1000).then(() => import("@/pages/analytics/Analytics"))
+  delay(500).then(() => import("@/pages/analytics/Analytics"))
 );
 const Categories = lazy(() =>
-  delay(1000).then(() => import("@/pages/ecommerce/categories/Categories"))
+  delay(500).then(() => import("@/pages/ecommerce/categories/Categories"))
 );
 const Products = lazy(() =>
-  delay(1000).then(() => import("@/pages/ecommerce/products/Products"))
+  delay(500).then(() => import("@/pages/ecommerce/products/Products"))
 );
 const Users = lazy(() =>
-  delay(1000).then(() => import("@/pages/accounts/users/Users"))
+  delay(500).then(() => import("@/pages/accounts/users/Users"))
 );
 const Roles = lazy(() =>
-  delay(1000).then(() => import("@/pages/accounts/roles/Roles"))
+  delay(500).then(() => import("@/pages/accounts/roles/Roles"))
 );
 
 export const AuthRoutes = createBrowserRouter([
@@ -30,7 +31,7 @@ export const AuthRoutes = createBrowserRouter([
     element: <MainLayout />,
     children: [
       {
-        path: "",
+        index: true,
         element: (
           <PageLoader>
             <Dashboard />
@@ -38,7 +39,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/dashboard",
+        path: "dashboard",
         element: (
           <PageLoader>
             <Dashboard />
@@ -46,7 +47,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/analytics",
+        path: "analytics",
         element: (
           <PageLoader>
             <Analytics />
@@ -54,7 +55,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/categories",
+        path: "categories",
         element: (
           <PageLoader>
             <Categories />
@@ -62,7 +63,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/products",
+        path: "products",
         element: (
           <PageLoader>
             <Products />
@@ -70,7 +71,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/users",
+        path: "users",
         element: (
           <PageLoader>
             <Users />
@@ -78,7 +79,7 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
       {
-        path: "/roles",
+        path: "roles",
         element: (
           <PageLoader>
             <Roles />
@@ -86,5 +87,13 @@ export const AuthRoutes = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: (
+      <PageLoader>
+        <NotFound />
+      </PageLoader>
+    ),
   },
 ]);

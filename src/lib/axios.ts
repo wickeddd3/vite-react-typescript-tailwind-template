@@ -4,10 +4,9 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
-import {
-  getLocalStorageState,
-  removeLocalStorageState,
-} from "@/utils/local-storage";
+import { getLocalStorageState } from "@/utils/local-storage";
+import { baseURL, tokenName } from "@/config/app.config";
+import { logout } from "@/utils/logout";
 
 type ApiRequestOptions = {
   url?: string;
@@ -17,8 +16,6 @@ type ApiRequestOptions = {
 type RequestData = Record<string, unknown> | FormData | null;
 
 export const apiRequest = ({ url = "", config = {} }: ApiRequestOptions) => {
-  const baseURL = import.meta.env.VITE_APP_API_BASE_URL || "";
-  const tokenName = import.meta.env.VITE_APP_TOKEN_LOCAL_STORAGE_NAME || "";
   const headers = {
     Accept: "application/json",
   };
@@ -47,7 +44,7 @@ export const apiRequest = ({ url = "", config = {} }: ApiRequestOptions) => {
     async (error) => {
       const { response } = error;
       if (response?.status === 401) {
-        removeLocalStorageState(tokenName);
+        logout();
       }
       return Promise.reject(error);
     }
