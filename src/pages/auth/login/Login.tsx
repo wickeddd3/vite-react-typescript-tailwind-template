@@ -23,6 +23,19 @@ const Login = () => {
       <div className="px-8 lg:p-0">
         <div className="w-full h-full flex flex-col justify-center gap-6 m-auto sm:w-[350px]">
           <div className="flex flex-col space-y-2 text-center">
+            {/* demo purposes only */}
+            <div className="bg-gray-50 p-2 rounded-lg flex flex-col gap-2">
+              <h6 className="text-md font-medium">Sample Credentials</h6>
+              <div>
+                <p className="text-sm">
+                  <b>Email:</b> <i>johndoe@test.com</i>
+                </p>
+                <p className="text-sm">
+                  <b>Password:</b> <i>password123</i>
+                </p>
+              </div>
+            </div>
+            {/* demo purposes only */}
             <h1 className="text-2xl font-semibold tracking-tight">
               Sign in to your account
             </h1>
