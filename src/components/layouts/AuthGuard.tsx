@@ -2,15 +2,21 @@ import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
 import { getAuthUserThunk } from "@/store/slices/auth";
+import { AuthLoader } from "@/components/AuthLoader";
+import { debounce } from "@/utils/delay";
 
 export const AuthGuard = ({ children }: { children: ReactNode }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const user = useSelector((state: RootState) => state.authSlice.auth?.user);
 
-  useEffect(() => {
+  const handleGetAuthUser = debounce(() => {
     dispatch(getAuthUserThunk());
-  }, [dispatch]);
+  }, 1000);
 
-  return user ? children : "loading";
+  useEffect(() => {
+    handleGetAuthUser();
+  }, [handleGetAuthUser]);
+
+  return user ? children : <AuthLoader />;
 };
