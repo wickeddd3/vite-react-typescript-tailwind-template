@@ -15,8 +15,8 @@ export const AuthGuard = ({ children }: { children: ReactNode }) => {
   }, 1000);
 
   useEffect(() => {
-    handleGetAuthUser();
-  }, [handleGetAuthUser]);
+    if (!user) handleGetAuthUser();
+  }, [user, handleGetAuthUser]);
 
   return user ? children : <AuthLoader />;
 };
