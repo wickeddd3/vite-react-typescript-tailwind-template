@@ -1,5 +1,5 @@
 import { lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { MainLayout } from "@/components/layouts/main-layout/MainLayout";
 import { PageLoader } from "@/components/PageLoader";
 
@@ -32,6 +32,10 @@ export const AuthRoutes = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Navigate to="/dashboard" />, // Redirect "/" to "/dashboard"
+      },
+      {
+        path: "dashboard",
         element: (
           <PageLoader>
             <Dashboard />
