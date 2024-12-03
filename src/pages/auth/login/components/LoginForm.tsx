@@ -19,11 +19,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "@/store";
 import { loginThunk } from "@/store/slices/auth";
+import { useState } from "react";
 
 export const LoginForm = ({ className = "" }) => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const defaultValues = {
     email: "",
     password: "",
@@ -34,30 +36,28 @@ export const LoginForm = ({ className = "" }) => {
     defaultValues: defaultValues,
   });
 
-  const {
-    handleSubmit,
-    control,
-    formState: { isSubmitting },
-  } = form;
+  const { handleSubmit, control } = form;
 
   async function onSubmit(values: LoginSchemaType) {
-    try {
-      dispatch(loginThunk(values))
-        .unwrap()
-        .then(() => {
-          toast({
-            title: "Success",
-            description: "Logged in successfully",
-          });
-          navigate("/");
+    setLoading(true);
+    dispatch(loginThunk(values))
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Success",
+          description: "Logged in successfully",
         });
-    } catch {
-      toast({
-        title: "Error",
-        description: "Something went wrong, please try again later",
-        variant: "destructive",
+        setLoading(false);
+        navigate("/");
+      })
+      .catch((error) => {
+        toast({
+          title: "Login failed",
+          description: error,
+          variant: "destructive",
+        });
+        setLoading(false);
       });
-    }
   }
 
   return (
@@ -81,7 +81,7 @@ export const LoginForm = ({ className = "" }) => {
                     autoCapitalize="none"
                     autoComplete="email"
                     autoCorrect="off"
-                    disabled={isSubmitting}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -105,7 +105,7 @@ export const LoginForm = ({ className = "" }) => {
                     autoCapitalize="none"
                     autoComplete="password"
                     autoCorrect="off"
-                    disabled={isSubmitting}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -115,11 +115,11 @@ export const LoginForm = ({ className = "" }) => {
         </form>
         <Button
           onClick={handleSubmit(onSubmit)}
-          disabled={isSubmitting}
+          disabled={loading}
           className="w-full mt-4"
         >
-          {!isSubmitting && <span>Log in</span>}
-          {isSubmitting && <LoaderCircle className="animate-spin" />}
+          {!loading && <span>Log in</span>}
+          {loading && <LoaderCircle className="animate-spin" />}
         </Button>
       </Form>
       <div className="relative">
@@ -132,7 +132,7 @@ export const LoginForm = ({ className = "" }) => {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isSubmitting}>
+      <Button variant="outline" type="button" disabled={loading}>
         <GitHubLogoIcon className="mr-2 h-4 w-4" />
         GitHub
       </Button>
