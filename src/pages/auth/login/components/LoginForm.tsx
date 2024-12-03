@@ -132,7 +132,7 @@ export const LoginForm = ({ className = "" }) => {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={loading}>
+      <Button variant="outline" type="button" disabled={true}>
         <GitHubLogoIcon className="mr-2 h-4 w-4" />
         GitHub
       </Button>
