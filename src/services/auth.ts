@@ -1,5 +1,6 @@
 import { apiRequest } from "@/lib/axios";
 import { LoginSchemaType, RegisterSchemaType } from "@/schema/auth";
+import { AxiosError } from "axios";
 
 const baseUrl = "/api/auth";
 const authResource = apiRequest({ url: "/api/auth" });
@@ -9,7 +10,14 @@ export const register = async (data: RegisterSchemaType) => {
 };
 
 export const login = async (data: LoginSchemaType) => {
-  return await authResource.post(data, { url: `${baseUrl}/login` });
+  try {
+    return await authResource.post(data, { url: `${baseUrl}/login` });
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      return error.response;
+    }
+    throw new Error("An unexpected error occurred");
+  }
 };
 
 export const getAuthUser = async () => {
