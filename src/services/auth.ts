@@ -28,5 +28,12 @@ export const login = async (data: LoginSchemaType) => {
 };
 
 export const getAuthUser = async () => {
-  return await authResource.get({ url: `${baseUrl}/me` });
+  try {
+    return await authResource.get({ url: `${baseUrl}/me` });
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      return error.response;
+    }
+    throw new Error("An unexpected error occurred");
+  }
 };
