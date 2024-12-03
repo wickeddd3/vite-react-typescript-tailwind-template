@@ -19,11 +19,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "@/store";
 import { registerThunk } from "@/store/slices/auth";
+import { useState } from "react";
 
 export const RegisterForm = ({ className = "" }) => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
   const defaultValues = {
     name: "",
     email: "",
@@ -35,27 +37,28 @@ export const RegisterForm = ({ className = "" }) => {
     defaultValues: defaultValues,
   });
 
-  const {
-    handleSubmit,
-    control,
-    formState: { isSubmitting },
-  } = form;
+  const { handleSubmit, control } = form;
 
   async function onSubmit(values: RegisterSchemaType) {
-    try {
-      await dispatch(registerThunk(values));
-      toast({
-        title: "Success",
-        description: "Account created successfully",
+    setLoading(true);
+    dispatch(registerThunk(values))
+      .unwrap()
+      .then(() => {
+        toast({
+          title: "Success",
+          description: "Account created successfully",
+        });
+        setLoading(false);
+        navigate("/");
+      })
+      .catch((error) => {
+        toast({
+          title: "Account creation failed",
+          description: error,
+          variant: "destructive",
+        });
+        setLoading(false);
       });
-      navigate("/");
-    } catch {
-      toast({
-        title: "Error",
-        description: "Something went wrong, please try again later",
-        variant: "destructive",
-      });
-    }
   }
 
   return (
@@ -79,7 +82,7 @@ export const RegisterForm = ({ className = "" }) => {
                     autoCapitalize="none"
                     autoComplete="name"
                     autoCorrect="off"
-                    disabled={isSubmitting}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -103,7 +106,7 @@ export const RegisterForm = ({ className = "" }) => {
                     autoCapitalize="none"
                     autoComplete="email"
                     autoCorrect="off"
-                    disabled={isSubmitting}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -127,7 +130,7 @@ export const RegisterForm = ({ className = "" }) => {
                     autoCapitalize="none"
                     autoComplete="password"
                     autoCorrect="off"
-                    disabled={isSubmitting}
+                    disabled={loading}
                   />
                 </FormControl>
                 <FormMessage />
@@ -137,11 +140,11 @@ export const RegisterForm = ({ className = "" }) => {
         </form>
         <Button
           onClick={handleSubmit(onSubmit)}
-          disabled={isSubmitting}
+          disabled={loading}
           className="w-full mt-4"
         >
-          {!isSubmitting && <span>Create account</span>}
-          {isSubmitting && <LoaderCircle className="animate-spin" />}
+          {!loading && <span>Create account</span>}
+          {loading && <LoaderCircle className="animate-spin" />}
         </Button>
       </Form>
       <div className="relative">
@@ -154,7 +157,7 @@ export const RegisterForm = ({ className = "" }) => {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isSubmitting}>
+      <Button variant="outline" type="button" disabled={loading}>
         <GitHubLogoIcon className="mr-2 h-4 w-4" />
         GitHub
       </Button>
