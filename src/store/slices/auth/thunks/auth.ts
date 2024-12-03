@@ -14,16 +14,29 @@ export const registerThunk = createAsyncThunk<
 
 export const loginThunk = createAsyncThunk<
   Auth, // Return type of the thunk
-  LoginSchemaType // Argument type for the thunk
->("authSlice/loginThunk", async (initialData: LoginSchemaType) => {
-  const { data } = await login(initialData);
-  return data ?? null;
-});
-
-export const getAuthUserThunk = createAsyncThunk<AuthUser>(
-  "authSlice/getAuthUserThunk",
-  async () => {
-    const { data } = await getAuthUser();
-    return data ?? null;
+  LoginSchemaType, // Argument type for the thunk
+  { rejectValue: string }
+>(
+  "authSlice/loginThunk",
+  async (initialData: LoginSchemaType, { rejectWithValue }) => {
+    const { status, data } = await login(initialData);
+    if (status === 200) {
+      return data;
+    }
+    return rejectWithValue("Incorrect email or password");
   }
 );
+
+export const getAuthUserThunk = createAsyncThunk<
+  AuthUser | null,
+  void,
+  { rejectValue: string }
+>("authSlice/getAuthUserThunk", async (_, { rejectWithValue }) => {
+  const { status, data } = await getAuthUser();
+  if (status === 200) {
+    return data;
+  }
+  return rejectWithValue(
+    "Error occurred while fetching authenticated user data."
+  );
+});
