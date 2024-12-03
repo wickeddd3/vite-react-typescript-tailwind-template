@@ -38,7 +38,7 @@ export const LoginForm = ({ className = "" }) => {
 
   const { handleSubmit, control } = form;
 
-  async function onSubmit(values: LoginSchemaType) {
+  const handleLogin = (values: LoginSchemaType) => {
     setLoading(true);
     dispatch(loginThunk(values))
       .unwrap()
@@ -58,12 +58,15 @@ export const LoginForm = ({ className = "" }) => {
         });
         setLoading(false);
       });
-  }
+  };
 
   return (
     <div className={cn("grid gap-6", className)}>
       <Form {...form} data-testid="create-form">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+        <form
+          onSubmit={handleSubmit(handleLogin)}
+          className="flex flex-col gap-2"
+        >
           <FormField
             control={control}
             name="email"
@@ -112,15 +115,15 @@ export const LoginForm = ({ className = "" }) => {
               </FormItem>
             )}
           />
+          <Button
+            onClick={handleSubmit(handleLogin)}
+            disabled={loading}
+            className="w-full mt-4"
+          >
+            {!loading && <span>Log in</span>}
+            {loading && <LoaderCircle className="animate-spin" />}
+          </Button>
         </form>
-        <Button
-          onClick={handleSubmit(onSubmit)}
-          disabled={loading}
-          className="w-full mt-4"
-        >
-          {!loading && <span>Log in</span>}
-          {loading && <LoaderCircle className="animate-spin" />}
-        </Button>
       </Form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">

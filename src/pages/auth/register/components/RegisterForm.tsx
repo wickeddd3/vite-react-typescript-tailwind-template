@@ -39,7 +39,7 @@ export const RegisterForm = ({ className = "" }) => {
 
   const { handleSubmit, control } = form;
 
-  async function onSubmit(values: RegisterSchemaType) {
+  const handleRegister = (values: RegisterSchemaType) => {
     setLoading(true);
     dispatch(registerThunk(values))
       .unwrap()
@@ -59,12 +59,15 @@ export const RegisterForm = ({ className = "" }) => {
         });
         setLoading(false);
       });
-  }
+  };
 
   return (
     <div className={cn("grid gap-6", className)}>
       <Form {...form} data-testid="create-form">
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+        <form
+          onSubmit={handleSubmit(handleRegister)}
+          className="flex flex-col gap-2"
+        >
           <FormField
             control={control}
             name="name"
@@ -137,15 +140,15 @@ export const RegisterForm = ({ className = "" }) => {
               </FormItem>
             )}
           />
+          <Button
+            onClick={handleSubmit(handleRegister)}
+            disabled={loading}
+            className="w-full mt-4"
+          >
+            {!loading && <span>Create account</span>}
+            {loading && <LoaderCircle className="animate-spin" />}
+          </Button>
         </form>
-        <Button
-          onClick={handleSubmit(onSubmit)}
-          disabled={loading}
-          className="w-full mt-4"
-        >
-          {!loading && <span>Create account</span>}
-          {loading && <LoaderCircle className="animate-spin" />}
-        </Button>
       </Form>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
