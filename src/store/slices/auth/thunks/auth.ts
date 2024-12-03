@@ -6,11 +6,20 @@ import { AuthUser } from "@/types/auth";
 
 export const registerThunk = createAsyncThunk<
   Auth, // Return type of the thunk
-  RegisterSchemaType // Argument type for the thunk
->("authSlice/registerThunk", async (initialData: RegisterSchemaType) => {
-  const { data } = await register(initialData);
-  return data ?? null;
-});
+  RegisterSchemaType, // Argument type for the thunk
+  { rejectValue: string }
+>(
+  "authSlice/registerThunk",
+  async (initialData: RegisterSchemaType, { rejectWithValue }) => {
+    const { status, data } = await register(initialData);
+    if (status === 201) {
+      return data;
+    }
+    const errorMessage =
+      data?.message || "Error occurred while creating your account";
+    return rejectWithValue(errorMessage);
+  }
+);
 
 export const loginThunk = createAsyncThunk<
   Auth, // Return type of the thunk
