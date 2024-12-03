@@ -6,7 +6,14 @@ const baseUrl = "/api/auth";
 const authResource = apiRequest({ url: "/api/auth" });
 
 export const register = async (data: RegisterSchemaType) => {
-  return await authResource.post(data, { url: `${baseUrl}/register` });
+  try {
+    return await authResource.post(data, { url: `${baseUrl}/register` });
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      return error.response;
+    }
+    throw new Error("An unexpected error occurred");
+  }
 };
 
 export const login = async (data: LoginSchemaType) => {
