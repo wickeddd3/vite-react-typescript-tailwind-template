@@ -5,6 +5,6 @@ export const listCategoriesThunk = createAsyncThunk(
   "categoriesSlice/listCategoriesThunk",
   async () => {
     const response = await listCategories();
-    return response?.data ?? [];
+    return response?.data;
   }
 );
