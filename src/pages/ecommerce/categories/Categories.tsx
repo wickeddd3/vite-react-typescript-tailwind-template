@@ -4,8 +4,8 @@ import { AppDispatch, RootState } from "@/store";
 import { listCategoriesThunk } from "@/store/slices/categories";
 import { Page } from "@/components/layouts/Page";
 import { CategorySearch } from "@/pages/ecommerce/categories/components/CategorySearch";
-import { Button } from "@/components/ui/button";
 import { CategoryList } from "@/pages/ecommerce/categories/components/CategoryList";
+import { AddCategoryButtonDialog } from "@/pages/ecommerce/categories/components/AddCategoryButtonDialog";
 
 const Categories = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -28,7 +28,7 @@ const Categories = () => {
           <span className="text-xl font-bold text-gray-800">Categories</span>
           <div className="flex items-center gap-2">
             <CategorySearch />
-            <Button>Add Category</Button>
+            <AddCategoryButtonDialog />
           </div>
         </div>
         <CategoryList categories={categories} />
