@@ -4,6 +4,7 @@ import {
   listCategoriesThunk,
   createCategoryThunk,
   updateCategoryThunk,
+  deleteCategoryThunk,
 } from "@/store/slices/categories/thunks/categories";
 import { categoriesReducers } from "@/store/slices/categories/extra-reducers/categories";
 import { selectCategoryReducer } from "@/store/slices/categories/reducers";
@@ -21,6 +22,11 @@ export const categoriesSlice = createSlice({
 
 export const { selectCategory } = categoriesSlice.actions;
 
-export { listCategoriesThunk, createCategoryThunk, updateCategoryThunk };
+export {
+  listCategoriesThunk,
+  createCategoryThunk,
+  updateCategoryThunk,
+  deleteCategoryThunk,
+};
 
 export default categoriesSlice.reducer;

@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { create, list, update } from "@/services/categories";
+import { create, list, remove, update } from "@/services/categories";
 import { CategorySchemaType } from "@/schema/category";
 import { Category } from "@/types/ecommerce";
 import { UpdateCategoryThunkPayloadType } from "./types";
@@ -40,5 +40,21 @@ export const updateCategoryThunk = createAsyncThunk<
       return data;
     }
     return rejectWithValue("Error occurred while updating category.");
+  }
+);
+
+export const deleteCategoryThunk = createAsyncThunk<
+  number,
+  number,
+  { rejectValue: string }
+>(
+  "categoriesSlice/deleteCategoryThunk",
+  async (initialData: number, { rejectWithValue }) => {
+    const id = initialData;
+    const { status } = await remove(id);
+    if (status === 200) {
+      return id;
+    }
+    return rejectWithValue("Error occurred while deleting category.");
   }
 );
