@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Category } from "@/types/ecommerce";
-import { Pencil } from "lucide-react";
+import { EditCategoryButtonDialog } from "@/pages/ecommerce/categories/components/EditCategoryButtonDialog";
 
 interface CategoryListItemProps {
   category: Category;
@@ -8,6 +7,7 @@ interface CategoryListItemProps {
 
 export const CategoryListItem = ({
   category: { name, description },
+  category,
 }: CategoryListItemProps) => {
   return (
     <div className="p-4 bg-white rounded-md shadow-sm flex items-center justify-between">
@@ -15,9 +15,7 @@ export const CategoryListItem = ({
         <span className="text-md font-medium text-gray-800">{name}</span>
         <span className="text-sm text-gray-600">{description}</span>
       </div>
-      <Button variant="ghost" size="icon">
-        <Pencil />
-      </Button>
+      <EditCategoryButtonDialog category={category} />
     </div>
   );
 };
