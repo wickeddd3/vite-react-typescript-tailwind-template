@@ -17,11 +17,17 @@ import { LoaderCircle } from "lucide-react";
 interface CategoryFormProps {
   onSubmit: (values: CategorySchemaType) => void;
   loading: boolean;
+  value?: object;
 }
-export const CategoryForm = ({ onSubmit, loading }: CategoryFormProps) => {
+export const CategoryForm = ({
+  onSubmit,
+  loading,
+  value = {},
+}: CategoryFormProps) => {
   const defaultValues = {
     name: "",
     description: "",
+    ...value,
   };
 
   const form = useForm<CategorySchemaType>({
@@ -33,7 +39,10 @@ export const CategoryForm = ({ onSubmit, loading }: CategoryFormProps) => {
 
   const handleFormSubmit = (values: CategorySchemaType) => {
     onSubmit(values);
-    reset();
+    reset({
+      name: "",
+      description: "",
+    });
   };
 
   return (
