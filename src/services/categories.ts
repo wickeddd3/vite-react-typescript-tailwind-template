@@ -37,3 +37,14 @@ export const update = async (data: CategorySchemaType, id: number) => {
     throw new Error("An unexpected error occurred");
   }
 };
+
+export const remove = async (id: number) => {
+  try {
+    return await categoriesResource.delete({ url: `${baseUrl}/${id}` });
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      return error.response;
+    }
+    throw new Error("An unexpected error occurred");
+  }
+};
