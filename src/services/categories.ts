@@ -26,3 +26,14 @@ export const create = async (data: CategorySchemaType) => {
     throw new Error("An unexpected error occurred");
   }
 };
+
+export const update = async (data: CategorySchemaType, id: number) => {
+  try {
+    return await categoriesResource.put(data, { url: `${baseUrl}/${id}` });
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      return error.response;
+    }
+    throw new Error("An unexpected error occurred");
+  }
+};
