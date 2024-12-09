@@ -3,6 +3,7 @@ import { CategoriesState } from "@/store/slices/categories/types";
 import {
   createCategoryThunk,
   listCategoriesThunk,
+  updateCategoryThunk,
 } from "@/store/slices/categories/thunks/categories";
 import {
   handleFulfilled,
@@ -32,5 +33,18 @@ export const categoriesReducers = (
     const categories = [...state.categories.data];
     categories.unshift(category);
     state.categories.data = categories;
+  });
+
+  // update category
+  builder.addCase(updateCategoryThunk.fulfilled, (state, action) => {
+    const category = action.payload;
+    const categories = [...state.categories.data];
+    const categoryIndex = categories.findIndex(
+      (item) => item.id === category.id
+    );
+    if (categoryIndex >= 0) {
+      categories[categoryIndex] = category;
+      state.categories.data = categories;
+    }
   });
 };
