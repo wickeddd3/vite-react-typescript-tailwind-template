@@ -1,6 +1,9 @@
 import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { CategoriesState } from "@/store/slices/categories/types";
-import { listCategoriesThunk } from "@/store/slices/categories/thunks/categories";
+import {
+  createCategoryThunk,
+  listCategoriesThunk,
+} from "@/store/slices/categories/thunks/categories";
 import {
   handleFulfilled,
   handlePending,
@@ -22,4 +25,12 @@ export const categoriesReducers = (
     .addCase(listCategoriesThunk.rejected, (state) =>
       handleRejected(state, "categories")
     );
+
+  // add category
+  builder.addCase(createCategoryThunk.fulfilled, (state, action) => {
+    const category = action.payload;
+    const categories = [...state.categories.data];
+    categories.unshift(category);
+    state.categories.data = categories;
+  });
 };
