@@ -1,5 +1,6 @@
 import { Category } from "@/types/ecommerce";
 import { EditCategoryButtonDialog } from "@/pages/ecommerce/categories/components/EditCategoryButtonDialog";
+import { DeleteCategoryButtonDialog } from "@/pages/ecommerce/categories/components/DeleteCategoryButtonDialog";
 
 interface CategoryListItemProps {
   category: Category;
@@ -15,7 +16,10 @@ export const CategoryListItem = ({
         <span className="text-md font-medium text-gray-800">{name}</span>
         <span className="text-sm text-gray-600">{description}</span>
       </div>
-      <EditCategoryButtonDialog category={category} />
+      <div className="flex items-center gap-2">
+        <DeleteCategoryButtonDialog category={category} />
+        <EditCategoryButtonDialog category={category} />
+      </div>
     </div>
   );
 };
