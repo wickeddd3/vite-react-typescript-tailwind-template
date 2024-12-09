@@ -29,7 +29,7 @@ export const EditCategoryButtonDialog = ({
   const [loading, setLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleAddCategory = (values: CategorySchemaType) => {
+  const handleUpdateCategory = (values: CategorySchemaType) => {
     setLoading(true);
     dispatch(updateCategoryThunk({ category: values, id: category?.id }))
       .unwrap()
@@ -67,7 +67,7 @@ export const EditCategoryButtonDialog = ({
           <DialogDescription></DialogDescription>
         </DialogHeader>
         <CategoryForm
-          onSubmit={handleAddCategory}
+          onSubmit={handleUpdateCategory}
           loading={loading}
           value={category}
         />
