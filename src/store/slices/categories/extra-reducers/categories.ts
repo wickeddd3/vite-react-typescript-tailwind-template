@@ -2,6 +2,7 @@ import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import { CategoriesState } from "@/store/slices/categories/types";
 import {
   createCategoryThunk,
+  deleteCategoryThunk,
   listCategoriesThunk,
   updateCategoryThunk,
 } from "@/store/slices/categories/thunks/categories";
@@ -44,6 +45,17 @@ export const categoriesReducers = (
     );
     if (categoryIndex >= 0) {
       categories[categoryIndex] = category;
+      state.categories.data = categories;
+    }
+  });
+
+  // delete category
+  builder.addCase(deleteCategoryThunk.fulfilled, (state, action) => {
+    const id = action.payload;
+    const categories = [...state.categories.data];
+    const categoryIndex = categories.findIndex((item) => item.id === id);
+    if (categoryIndex >= 0) {
+      categories.splice(categoryIndex, 1);
       state.categories.data = categories;
     }
   });
