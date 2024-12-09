@@ -13,9 +13,12 @@ import { CategorySchema, CategorySchemaType } from "@/schema/category";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LoaderCircle } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
 
-export const CategoryForm = () => {
+interface CategoryFormProps {
+  onSubmit: (values: CategorySchemaType) => void;
+  loading: boolean;
+}
+export const CategoryForm = ({ onSubmit, loading }: CategoryFormProps) => {
   const defaultValues = {
     name: "",
     description: "",
@@ -26,39 +29,27 @@ export const CategoryForm = () => {
     defaultValues,
   });
 
-  const {
-    handleSubmit,
-    control,
-    formState: { isSubmitting },
-  } = form;
+  const { handleSubmit, control, reset } = form;
 
-  async function onSubmit(values: CategorySchemaType) {
-    try {
-      console.log(values);
-      toast({
-        title: "Success",
-        description: "Form created successfully",
-      });
-    } catch {
-      toast({
-        title: "Error",
-        description: "Something went wrong, please try again later",
-        variant: "destructive",
-      });
-    }
-  }
+  const handleFormSubmit = (values: CategorySchemaType) => {
+    onSubmit(values);
+    reset();
+  };
 
   return (
     <Form {...form} data-testid="create-form">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
+      <form
+        onSubmit={handleSubmit(handleFormSubmit)}
+        className="flex flex-col gap-2"
+      >
         <FormField
           control={control}
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel htmlFor="name">Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} id="name" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,9 +60,9 @@ export const CategoryForm = () => {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel htmlFor="description">Description</FormLabel>
               <FormControl>
-                <Textarea rows={5} {...field} />
+                <Textarea {...field} rows={5} id="description" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -80,11 +71,11 @@ export const CategoryForm = () => {
       </form>
       <Button
         onClick={handleSubmit(onSubmit)}
-        disabled={isSubmitting}
+        disabled={loading}
         className="w-full mt-4"
       >
-        {!isSubmitting && <span>Save</span>}
-        {isSubmitting && (
+        {!loading && <span>Save</span>}
+        {loading && (
           <LoaderCircle className="animate-spin" data-testid="spinner-icon" />
         )}
       </Button>
