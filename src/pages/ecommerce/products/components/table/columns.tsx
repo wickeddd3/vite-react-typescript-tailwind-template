@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { ColumnHeader } from "./ColumnHeader";
+import { DataTableColumnHeader } from "@/components/datatable/DataTableColumnHeader";
 import { DollarSign } from "lucide-react";
 import { RowActions } from "./RowActions";
 import { Product } from "@/types/ecommerce";
@@ -7,7 +7,9 @@ import { Product } from "@/types/ecommerce";
 export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "barcode",
-    header: ({ column }) => <ColumnHeader column={column} title="Barcode" />,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Barcode" />
+    ),
     cell: ({ row }) => (
       <div className="w-[80px]">{row.getValue("barcode")}</div>
     ),
@@ -16,7 +18,9 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "name",
-    header: ({ column }) => <ColumnHeader column={column} title="Name" />,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Name" />
+    ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
@@ -29,7 +33,9 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "model",
-    header: ({ column }) => <ColumnHeader column={column} title="Model" />,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Model" />
+    ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
@@ -42,7 +48,9 @@ export const columns: ColumnDef<Product>[] = [
   },
   {
     accessorKey: "serialNumber",
-    header: ({ column }) => <ColumnHeader column={column} title="Serial No." />,
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Serial No." />
+    ),
     cell: ({ row }) => {
       return (
         <div className="flex space-x-2">
@@ -56,7 +64,7 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "price",
     header: ({ column }) => (
-      <ColumnHeader
+      <DataTableColumnHeader
         column={column}
         title="Price"
         className="flex justify-center items-center"
