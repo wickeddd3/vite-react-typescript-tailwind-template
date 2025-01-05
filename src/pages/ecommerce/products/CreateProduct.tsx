@@ -63,6 +63,7 @@ const CreateProduct = () => {
             onSubmit={handleAddProduct}
             loading={loading}
             categories={categories}
+            submitText="Create product"
           />
         </div>
       </Page.Content>
