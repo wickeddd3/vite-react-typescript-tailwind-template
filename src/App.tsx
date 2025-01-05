@@ -7,6 +7,7 @@ import { tokenName } from "@/config/app.config";
 import { AppDispatch } from "@/store";
 import { setAuthToken } from "@/store/slices/auth";
 import { Routes } from "@/router/Routes";
+import { AlertDialogProvider } from "@/contexts/AlertDialogContext";
 
 const App = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -17,7 +18,9 @@ const App = () => {
 
   return (
     <>
-      <RouterProvider router={Routes} />
+      <AlertDialogProvider>
+        <RouterProvider router={Routes} />
+      </AlertDialogProvider>
       <Toaster />
     </>
   );
