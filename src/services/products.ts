@@ -27,6 +27,17 @@ export const create = async (data: ProductSchemaType) => {
   }
 };
 
+export const get = async (id: number) => {
+  try {
+    return await productsResource.get({ url: `${baseUrl}/${id}` });
+  } catch (error) {
+    if (error instanceof AxiosError && error.response) {
+      return error.response;
+    }
+    throw new Error("An unexpected error occurred");
+  }
+};
+
 export const update = async (data: ProductSchemaType, id: number) => {
   try {
     return await productsResource.put(data, { url: `${baseUrl}/${id}` });
