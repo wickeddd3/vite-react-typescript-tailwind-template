@@ -10,6 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store";
+import { useAlertDialog } from "@/contexts/AlertDialogContext";
+import { deleteProductThunk } from "@/store/slices/products";
 
 interface RowActionsProps<TData> {
   row: Row<TData & { id: string | number }>;
@@ -20,6 +24,25 @@ export function RowActions<TData>({
     original: { id },
   },
 }: RowActionsProps<TData>) {
+  const dispatch: AppDispatch = useDispatch();
+
+  const { showDialog } = useAlertDialog();
+
+  const handleDelete = (id: number) => {
+    dispatch(deleteProductThunk(id));
+  };
+
+  const handleDeleteDialog = (id: number) => {
+    showDialog({
+      title: "Are you sure?",
+      description:
+        "This action cannot be undone. This will permanently delete the selected item.",
+      confirmLabel: "Delete",
+      cancelLabel: "Cancel",
+      onConfirm: () => handleDelete(id),
+    });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -47,7 +70,7 @@ export function RowActions<TData>({
           </DropdownMenuShortcut>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => handleDeleteDialog(Number(id))}>
           Delete
           <DropdownMenuShortcut>
             <Trash className="w-4 h-4" />
