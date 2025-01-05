@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { create, list, remove, update } from "@/services/products";
+import { create, get, list, remove, update } from "@/services/products";
 import { ProductSchemaType } from "@/schema/product";
 import { Product } from "@/types/ecommerce";
 import { UpdateProductThunkPayloadType } from "./types";
@@ -24,6 +24,21 @@ export const createProductThunk = createAsyncThunk<
       return data;
     }
     return rejectWithValue("Error occurred while creating product.");
+  }
+);
+
+export const getProductThunk = createAsyncThunk<
+  Product,
+  number,
+  { rejectValue: string }
+>(
+  "productsSlice/getProductThunk",
+  async (initialData: number, { rejectWithValue }) => {
+    const { status, data } = await get(initialData);
+    if (status === 200) {
+      return data;
+    }
+    return rejectWithValue("Error occurred while fetching product.");
   }
 );
 
