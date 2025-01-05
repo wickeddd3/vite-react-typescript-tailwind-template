@@ -6,7 +6,9 @@ import {
   updateProductThunk,
   deleteProductThunk,
 } from "@/store/slices/products/thunks/products";
+import { listCategoriesThunk } from "@/store/slices/products/thunks/product-options";
 import { productsReducers } from "@/store/slices/products/extra-reducers/products";
+import { productOptionsReducers } from "@/store/slices/products/extra-reducers/product-options";
 import { selectProductReducer } from "@/store/slices/products/reducers";
 
 export const productsSlice = createSlice({
@@ -17,6 +19,7 @@ export const productsSlice = createSlice({
   },
   extraReducers(builder) {
     productsReducers(builder);
+    productOptionsReducers(builder);
   },
 });
 
@@ -27,6 +30,7 @@ export {
   createProductThunk,
   updateProductThunk,
   deleteProductThunk,
+  listCategoriesThunk,
 };
 
 export default productsSlice.reducer;
