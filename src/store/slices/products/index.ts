@@ -3,6 +3,7 @@ import { initialState } from "@/store/slices/products/state";
 import {
   listProductsThunk,
   createProductThunk,
+  getProductThunk,
   updateProductThunk,
   deleteProductThunk,
 } from "@/store/slices/products/thunks/products";
@@ -28,6 +29,7 @@ export const { selectProduct } = productsSlice.actions;
 export {
   listProductsThunk,
   createProductThunk,
+  getProductThunk,
   updateProductThunk,
   deleteProductThunk,
   listCategoriesThunk,
