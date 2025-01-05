@@ -28,6 +28,12 @@ const Categories = lazy(() =>
 const Products = lazy(() =>
   delay(500).then(() => import("@/pages/ecommerce/products/Products"))
 );
+const CreateProduct = lazy(() =>
+  delay(500).then(() => import("@/pages/ecommerce/products/CreateProduct"))
+);
+const EditProduct = lazy(() =>
+  delay(500).then(() => import("@/pages/ecommerce/products/EditProduct"))
+);
 const Users = lazy(() =>
   delay(500).then(() => import("@/pages/accounts/users/Users"))
 );
@@ -96,11 +102,32 @@ export const Routes = createBrowserRouter([
               },
               {
                 path: "products",
-                element: (
-                  <PageLoader>
-                    <Products />
-                  </PageLoader>
-                ),
+                children: [
+                  {
+                    path: "",
+                    element: (
+                      <PageLoader>
+                        <Products />
+                      </PageLoader>
+                    ),
+                  },
+                  {
+                    path: "create",
+                    element: (
+                      <PageLoader>
+                        <CreateProduct />
+                      </PageLoader>
+                    ),
+                  },
+                  {
+                    path: ":id/edit",
+                    element: (
+                      <PageLoader>
+                        <EditProduct />
+                      </PageLoader>
+                    ),
+                  },
+                ],
               },
               {
                 path: "users",
