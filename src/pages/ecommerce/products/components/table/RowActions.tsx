@@ -63,11 +63,13 @@ export function RowActions<TData>({
             </DropdownMenuShortcut>
           </Link>
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          Clone
-          <DropdownMenuShortcut>
-            <CopyPlus className="w-4 h-4" />
-          </DropdownMenuShortcut>
+        <DropdownMenuItem asChild>
+          <Link to={`/products/${id}/clone`}>
+            Clone
+            <DropdownMenuShortcut>
+              <CopyPlus className="w-4 h-4" />
+            </DropdownMenuShortcut>
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={() => handleDeleteDialog(Number(id))}>
