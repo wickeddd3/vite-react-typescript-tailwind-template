@@ -5,6 +5,7 @@ import {
   createProductThunk,
   updateProductThunk,
   deleteProductThunk,
+  getProductThunk,
 } from "@/store/slices/products/thunks/products";
 import {
   handleFulfilled,
@@ -34,6 +35,12 @@ export const productsReducers = (
     const products = [...state.products.data];
     products.unshift(product);
     state.products.data = products;
+  });
+
+  // get product
+  builder.addCase(getProductThunk.fulfilled, (state, action) => {
+    const product = action.payload;
+    state.selectedProduct = product;
   });
 
   // update product
