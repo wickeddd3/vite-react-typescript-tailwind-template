@@ -34,6 +34,9 @@ const CreateProduct = lazy(() =>
 const EditProduct = lazy(() =>
   delay(500).then(() => import("@/pages/ecommerce/products/EditProduct"))
 );
+const CloneProduct = lazy(() =>
+  delay(500).then(() => import("@/pages/ecommerce/products/CloneProduct"))
+);
 const Users = lazy(() =>
   delay(500).then(() => import("@/pages/accounts/users/Users"))
 );
@@ -124,6 +127,14 @@ export const Routes = createBrowserRouter([
                     element: (
                       <PageLoader>
                         <EditProduct />
+                      </PageLoader>
+                    ),
+                  },
+                  {
+                    path: ":id/clone",
+                    element: (
+                      <PageLoader>
+                        <CloneProduct />
                       </PageLoader>
                     ),
                   },
