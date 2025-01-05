@@ -6,4 +6,8 @@ export const initialState: ProductsState = {
     data: [],
     loading: false,
   },
+  optionCategories: {
+    data: [],
+    loading: false,
+  },
 };
