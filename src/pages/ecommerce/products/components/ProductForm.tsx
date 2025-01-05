@@ -21,32 +21,37 @@ import { useForm } from "react-hook-form";
 import { ProductSchema, ProductSchemaType } from "@/schema/product";
 import { Input } from "@/components/ui/input";
 import { LoaderCircle } from "lucide-react";
-import { Category } from "@/types/ecommerce";
+import { Category, Product } from "@/types/ecommerce";
+import { useEffect, useMemo } from "react";
 
 interface ProductFormProps {
   onSubmit: (values: ProductSchemaType) => void;
   loading: boolean;
-  value?: object;
+  value?: Product | null;
   categories: Category[];
+  submitText?: string;
 }
 
 export const ProductForm = ({
   onSubmit,
   loading,
-  value = {},
+  value = null,
   categories = [],
+  submitText = "Save",
 }: ProductFormProps) => {
-  const defaultValues = {
-    categoryId: 1,
-    name: "",
-    brand: "",
-    supplier: "",
-    model: "",
-    serialNumber: "",
-    barcode: "",
-    price: 0,
-    ...value,
-  };
+  const defaultValues = useMemo(
+    () => ({
+      categoryId: 1,
+      name: value?.name ?? "",
+      brand: value?.brand ?? "",
+      supplier: value?.supplier ?? "",
+      model: value?.model ?? "",
+      serialNumber: value?.serialNumber ?? "",
+      barcode: value?.barcode ?? "",
+      price: value?.price ?? 0,
+    }),
+    [value]
+  );
 
   const form = useForm<ProductSchemaType>({
     resolver: zodResolver(ProductSchema),
@@ -59,6 +64,10 @@ export const ProductForm = ({
     onSubmit(values);
     reset(defaultValues);
   };
+
+  useEffect(() => {
+    reset(defaultValues);
+  }, [reset, defaultValues]);
 
   return (
     <Form {...form} data-testid="create-form">
@@ -198,7 +207,7 @@ export const ProductForm = ({
         disabled={loading}
         className="w-full mt-4"
       >
-        {!loading && <span>Create product</span>}
+        {!loading && <span>{submitText}</span>}
         {loading && (
           <LoaderCircle className="animate-spin" data-testid="spinner-icon" />
         )}
