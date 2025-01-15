@@ -1,13 +1,14 @@
 import { apiRequest } from "@/lib/axios";
 import { ProductSchemaType } from "@/schema/product";
+import { PaginatedQuery } from "@/types/table";
 import { AxiosError } from "axios";
 
 const baseUrl = "/api/products";
 const productsResource = apiRequest({ url: baseUrl });
 
-export const list = async () => {
+export const list = async (params: PaginatedQuery) => {
   try {
-    return await productsResource.get();
+    return await productsResource.get({ params });
   } catch (error) {
     if (error instanceof AxiosError && error.response) {
       return error.response;
