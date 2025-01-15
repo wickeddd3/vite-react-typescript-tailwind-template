@@ -19,8 +19,9 @@ export const productsReducers = (
   // list products
   builder
     .addCase(listProductsThunk.fulfilled, (state, action) => {
-      const { data } = action.payload;
+      const { data, meta } = action.payload;
       handleFulfilled(state, "products", data);
+      state.products.meta = meta;
     })
     .addCase(listProductsThunk.pending, (state) =>
       handlePending(state, "products")
