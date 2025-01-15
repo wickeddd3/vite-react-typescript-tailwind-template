@@ -3,12 +3,21 @@ import { create, get, list, remove, update } from "@/services/products";
 import { ProductSchemaType } from "@/schema/product";
 import { Product } from "@/types/ecommerce";
 import { UpdateProductThunkPayloadType } from "./types";
+import { Meta, PaginatedQuery } from "@/types/table";
 
-export const listProductsThunk = createAsyncThunk(
+export const listProductsThunk = createAsyncThunk<
+  { data: Product[]; meta: Meta },
+  PaginatedQuery,
+  { rejectValue: string }
+>(
   "productsSlice/listProductsThunk",
-  async () => {
-    const response = await list();
-    return response?.data;
+  async (initialData: PaginatedQuery, { rejectWithValue }) => {
+    const query = initialData;
+    const { status, data } = await list(query);
+    if (status === 200) {
+      return data;
+    }
+    return rejectWithValue("Error occurred while fetching list of products.");
   }
 );
 
