@@ -10,6 +10,8 @@ export const initialState: ProductsState = {
       size: 10,
       total: 0,
       totalPages: 1,
+      orderBy: "createdAt",
+      order: "desc",
     },
   },
   optionCategories: {
