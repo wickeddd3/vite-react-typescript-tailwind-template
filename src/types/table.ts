@@ -3,6 +3,8 @@ export type Meta = {
   size: number;
   total: number;
   totalPages: number;
+  orderBy: string;
+  order: string;
 };
 
 export type PaginatedQuery = {
