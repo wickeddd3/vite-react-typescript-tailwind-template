@@ -5,6 +5,12 @@ export const initialState: ProductsState = {
   products: {
     data: [],
     loading: false,
+    meta: {
+      page: 1,
+      size: 10,
+      total: 0,
+      totalPages: 1,
+    },
   },
   optionCategories: {
     data: [],
