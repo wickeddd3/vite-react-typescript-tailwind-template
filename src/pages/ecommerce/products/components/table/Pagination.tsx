@@ -30,6 +30,9 @@ export const Pagination = ({
     onUpdateMeta({ ...meta, size: Number(value) });
   };
 
+  const disabledNextPage = page >= totalPages;
+  const disabledPreviousPage = page <= 1;
+
   const handleFirstPage = (meta: Meta) => {
     if (meta.page === 1) return;
     onPaginate({
@@ -101,7 +104,7 @@ export const Pagination = ({
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => handleFirstPage(meta)}
-            disabled={false}
+            disabled={disabledPreviousPage}
           >
             <span className="sr-only">Go to first page</span>
             <ChevronsLeft />
@@ -110,7 +113,7 @@ export const Pagination = ({
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={() => handlePreviousPage(meta)}
-            disabled={false}
+            disabled={disabledPreviousPage}
           >
             <span className="sr-only">Go to previous page</span>
             <ChevronLeft />
@@ -119,7 +122,7 @@ export const Pagination = ({
             variant="outline"
             className="h-8 w-8 p-0"
             onClick={() => handleNextPage(meta)}
-            disabled={false}
+            disabled={disabledNextPage}
           >
             <span className="sr-only">Go to next page</span>
             <ChevronRight />
@@ -128,7 +131,7 @@ export const Pagination = ({
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
             onClick={() => handleLastPage(meta)}
-            disabled={false}
+            disabled={disabledNextPage}
           >
             <span className="sr-only">Go to last page</span>
             <ChevronsRight />
