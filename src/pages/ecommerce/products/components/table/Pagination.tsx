@@ -31,6 +31,7 @@ export const Pagination = ({
   };
 
   const handleFirstPage = (meta: Meta) => {
+    if (meta.page === 1) return;
     onPaginate({
       page: 1,
       size: meta.size,
@@ -39,7 +40,8 @@ export const Pagination = ({
     });
   };
 
-  const handleLastPage = () => {
+  const handleLastPage = (meta: Meta) => {
+    if (meta.page === meta.totalPages) return;
     onPaginate({
       page: meta.totalPages,
       size: meta.size,
@@ -48,9 +50,27 @@ export const Pagination = ({
     });
   };
 
-  const handlePreviousPage = () => {};
+  const handlePreviousPage = (meta: Meta) => {
+    const previousPage = meta.page - 1;
+    if (previousPage < 1) return;
+    onPaginate({
+      page: previousPage,
+      size: meta.size,
+      orderBy: "createdAt",
+      order: "desc",
+    });
+  };
 
-  const handleNextPage = () => {};
+  const handleNextPage = (meta: Meta) => {
+    const nextPage = meta.page + 1;
+    if (nextPage > meta.totalPages) return;
+    onPaginate({
+      page: nextPage,
+      size: meta.size,
+      orderBy: "createdAt",
+      order: "desc",
+    });
+  };
 
   return (
     <div className="flex items-center justify-between px-2">
@@ -89,7 +109,7 @@ export const Pagination = ({
           <Button
             variant="outline"
             className="h-8 w-8 p-0"
-            onClick={handlePreviousPage}
+            onClick={() => handlePreviousPage(meta)}
             disabled={false}
           >
             <span className="sr-only">Go to previous page</span>
@@ -98,7 +118,7 @@ export const Pagination = ({
           <Button
             variant="outline"
             className="h-8 w-8 p-0"
-            onClick={handleNextPage}
+            onClick={() => handleNextPage(meta)}
             disabled={false}
           >
             <span className="sr-only">Go to next page</span>
@@ -107,7 +127,7 @@ export const Pagination = ({
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
-            onClick={handleLastPage}
+            onClick={() => handleLastPage(meta)}
             disabled={false}
           >
             <span className="sr-only">Go to last page</span>
