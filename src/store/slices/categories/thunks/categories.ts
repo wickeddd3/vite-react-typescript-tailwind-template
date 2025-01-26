@@ -3,12 +3,21 @@ import { create, list, remove, update } from "@/services/categories";
 import { CategorySchemaType } from "@/schema/category";
 import { Category } from "@/types/ecommerce";
 import { UpdateCategoryThunkPayloadType } from "./types";
+import { Meta, PaginatedQuery } from "@/types/table";
 
-export const listCategoriesThunk = createAsyncThunk(
+export const listCategoriesThunk = createAsyncThunk<
+  { data: Category[]; meta: Meta },
+  PaginatedQuery,
+  { rejectValue: string }
+>(
   "categoriesSlice/listCategoriesThunk",
-  async () => {
-    const response = await list();
-    return response?.data;
+  async (initialData: PaginatedQuery, { rejectWithValue }) => {
+    const query = initialData;
+    const { status, data } = await list(query);
+    if (status === 200) {
+      return data;
+    }
+    return rejectWithValue("Error occurred while fetching list of categories.");
   }
 );
 
