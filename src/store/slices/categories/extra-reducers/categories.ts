@@ -18,8 +18,20 @@ export const categoriesReducers = (
   // list categories
   builder
     .addCase(listCategoriesThunk.fulfilled, (state, action) => {
-      const { data } = action.payload;
-      handleFulfilled(state, "categories", data);
+      const { data, meta } = action.payload;
+      let categories = [];
+      if (state.categories.initialized) {
+        categories = Array.from(
+          new Map(
+            [...state.categories.data, ...data].map((item) => [item.id, item])
+          ).values()
+        );
+      } else {
+        categories = data;
+      }
+      handleFulfilled(state, "categories", categories);
+      state.categories.initialized = true;
+      state.categories.meta = meta;
     })
     .addCase(listCategoriesThunk.pending, (state) =>
       handlePending(state, "categories")
