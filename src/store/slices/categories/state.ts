@@ -5,5 +5,14 @@ export const initialState: CategoriesState = {
   categories: {
     data: [],
     loading: false,
+    initialized: false,
+    meta: {
+      page: 1,
+      size: 10,
+      total: 0,
+      totalPages: 1,
+      orderBy: "createdAt",
+      order: "desc",
+    },
   },
 };
