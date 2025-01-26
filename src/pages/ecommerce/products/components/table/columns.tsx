@@ -13,7 +13,7 @@ export const columns: ColumnDef<Product>[] = [
     cell: ({ row }) => (
       <div className="w-[80px]">{row.getValue("barcode")}</div>
     ),
-    enableSorting: false,
+    enableSorting: true,
     enableHiding: false,
   },
   {
@@ -30,6 +30,8 @@ export const columns: ColumnDef<Product>[] = [
         </div>
       );
     },
+    enableSorting: true,
+    enableHiding: false,
   },
   {
     accessorKey: "model",
@@ -45,6 +47,8 @@ export const columns: ColumnDef<Product>[] = [
         </div>
       );
     },
+    enableSorting: true,
+    enableHiding: false,
   },
   {
     accessorKey: "serialNumber",
@@ -60,6 +64,8 @@ export const columns: ColumnDef<Product>[] = [
         </div>
       );
     },
+    enableSorting: true,
+    enableHiding: false,
   },
   {
     accessorKey: "price",
@@ -80,6 +86,8 @@ export const columns: ColumnDef<Product>[] = [
         </div>
       );
     },
+    enableSorting: true,
+    enableHiding: false,
   },
   {
     id: "actions",
@@ -88,5 +96,7 @@ export const columns: ColumnDef<Product>[] = [
         <RowActions row={row} />
       </div>
     ),
+    enableSorting: false,
+    enableHiding: false,
   },
 ];
