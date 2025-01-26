@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store";
-import { listProductsThunk, setProductsMeta } from "@/store/slices/products";
+import { listProductsThunk } from "@/store/slices/products";
 import { Page } from "@/components/layouts/Page";
 import { ProductsTable } from "@/pages/ecommerce/products/components/table/ProductsTable";
 import { columns } from "@/pages/ecommerce/products/components/table/columns";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Meta, PaginatedQuery } from "@/types/table";
+import { PaginatedQuery } from "@/types/table";
 
 const Products = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,24 +19,21 @@ const Products = () => {
     (state: RootState) => state.productsSlice.products.meta
   );
 
-  const handleUpdateMeta = (meta: Meta) => {
-    dispatch(setProductsMeta(meta));
-  };
-
-  const handlePaginate = (query: PaginatedQuery) => {
-    dispatch(listProductsThunk(query));
-  };
+  const handleFetchProducts = useCallback(
+    (query: PaginatedQuery) => {
+      dispatch(listProductsThunk(query));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    dispatch(
-      listProductsThunk({
-        page: 1,
-        size: 10,
-        orderBy: "createdAt",
-        order: "desc",
-      })
-    );
-  }, [dispatch]);
+    handleFetchProducts({
+      page: 1,
+      size: 10,
+      orderBy: "createdAt",
+      order: "desc",
+    });
+  }, [handleFetchProducts]);
 
   return (
     <Page>
@@ -58,8 +55,7 @@ const Products = () => {
           data={products}
           columns={columns}
           meta={meta}
-          onUpdateMeta={handleUpdateMeta}
-          onPaginate={handlePaginate}
+          fetchData={handleFetchProducts}
         />
       </Page.Content>
     </Page>
